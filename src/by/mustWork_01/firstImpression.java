@@ -3,12 +3,12 @@ package by.mustWork_01;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.cert.CollectionCertStoreParameters;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -44,15 +44,20 @@ public class firstImpression {
 
         System.out.println("2. Создание стрима из массива streamFromArray: "+ streamFromArray.collect(toList()));
         //b
+        Stream<Integer> streamOfArray = Stream.of(arrayInt);
+
+        System.out.println("2. Создание стрима из массива streamOfArray: "+streamOfArray.collect(toList()));
 
         //3. Создание стрима из файла (каждая запись в файле будет отдельной строкой в стриме)
+
         File file = new File("D:\\home_Projects\\udemy\\practice-java-building-projects\\Streams\\src\\by\\mustWork_01\\file.txt");
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write("This is a content of my new created file");
-        Stream<String> streamFromFile = Stream.of(file.toString());
-
-        System.out.println("3. Создание стрима из файла (каждая запись в файле будет отдельной строкой в стриме) streamFromFile: "+ streamFromFile.collect(toList()));
-
+        fileWriter.write("\nanother line of the text!");
+        fileWriter.write("\nthird line of the text!");
+        fileWriter.close(); // ничего не запишет пока не закроем поток записи
+        Stream<String> streamFromFile = Files.lines(Paths.get(file.getAbsolutePath()));
+        System.out.println("3. Создание стрима из файла (каждая запись в файле будет отдельной строкой в стриме) streamFromFile: "+streamFromFile.collect(toList()));
 
         //4. Создание стрима из коллекции
         List<String> list = new ArrayList<>();
@@ -74,12 +79,11 @@ public class firstImpression {
         streamFromSequence.forEach((e)-> System.out.print(e + ", "));
         System.out.println();
 
-
         //6. С помощью Stream.builder
 
         Stream.Builder<String> builder = Stream.builder();
         Stream<String> streamFromBuilder = builder.add("a1").add("a2").add("a3").build();
-        System.out.println("6. Создание стрима с помощью Stream.builder: "+streamFromBuilder.collect(Collectors.toList()));
+        System.out.println("6. Создание стрима с помощью Stream.builder: "+streamFromBuilder.collect(toList()));
 
 
 
@@ -87,34 +91,22 @@ public class firstImpression {
         // С помощью Stream.iterate
 
         Stream<Integer> streamIterate = Stream.iterate(1,x->x+2);
-        System.out.println("7. Создание бесконечных стримов c Stream.iterate: "+streamIterate.limit(10).collect(Collectors.toList()));
+        System.out.println("7. Создание бесконечных стримов c Stream.iterate: "+streamIterate.limit(10).collect(toList()));
 
         //8. С помощью Stream.generate
         Stream<String> streamGenerate = Stream.generate(()->"abc");
-        System.out.println("8. Создание бесконечных стримов с помощью Stream.generate: "+streamGenerate.limit(5).collect(Collectors.toList()));
+        System.out.println("8. Создание бесконечных стримов с помощью Stream.generate: "+streamGenerate.limit(5).collect(toList()));
 
         //9. Создать параллельный стрим из коллекции
+        Collection<String> stringCollection = Collections.singletonList("String message");
+        Stream<String> parallelStreamFromCollection = stringCollection.parallelStream();
 
+        System.out.println("9. Создать параллельный стрим из коллекции parallelStreamFromCollection: "+parallelStreamFromCollection.collect(Collectors.toList()));
 
+        //10. Создать пустой стрим
 
+        Stream<String> streamEmpty =Stream.empty();
+        System.out.println("10. Создать пустой стрим: "+ streamEmpty.collect(toList()));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // бесконечный stream через iterate
-        Stream<Integer> newStream = Stream.iterate(1, n -> n * 5);
-        System.out.println("newStream : "+ newStream.limit(5).collect(toList()));
     }
 }
