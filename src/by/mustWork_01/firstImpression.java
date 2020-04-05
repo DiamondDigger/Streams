@@ -19,17 +19,17 @@ import static java.util.stream.Collectors.*;
 public class firstImpression {
 
     public static void main(String[] args) throws IOException {
-        IntStream.of(10, 20, 39, 45, 0, 53, 12, 345)
-                .filter(x -> x <= 45)
-                .map(y -> y * 2)
-                .filter(x -> x / 2 < 40)
-                .sorted()
-                //after sorted(): 0 20 24 40 78
-                .skip(1) // - считаются с 1-го элемента а не с 0-я
-                //after skip(1): 20 24 40 78
-                .limit(2)
-                //after limit(2): 20 24
-                .forEach(System.out::println);
+//        IntStream.of(10, 20, 39, 45, 0, 53, 12, 345)
+//                .filter(x -> x <= 45)
+//                .map(y -> y * 2)
+//                .filter(x -> x / 2 < 40)
+//                .sorted()
+//                //after sorted(): 0 20 24 40 78
+//                .skip(1) // - считаются с 1-го элемента а не с 0-я
+//                //after skip(1): 20 24 40 78
+//                .limit(2)
+//                //after limit(2): 20 24
+//                .forEach(System.out::println);
 
         //1. Создание стрима из значений
 
@@ -72,14 +72,26 @@ public class firstImpression {
 
         System.out.print("5. Создание числового стрима из строки streamFromSequence: ");
         streamFromSequence.forEach((e)-> System.out.print(e + ", "));
+        System.out.println();
 
 
         //6. С помощью Stream.builder
 
+        Stream.Builder<String> builder = Stream.builder();
+        Stream<String> streamFromBuilder = builder.add("a1").add("a2").add("a3").build();
+        System.out.println("6. Создание стрима с помощью Stream.builder: "+streamFromBuilder.collect(Collectors.toList()));
+
+
+
         //7. Создание бесконечных стримов
         // С помощью Stream.iterate
 
+        Stream<Integer> streamIterate = Stream.iterate(1,x->x+2);
+        System.out.println("7. Создание бесконечных стримов c Stream.iterate: "+streamIterate.limit(10).collect(Collectors.toList()));
+
         //8. С помощью Stream.generate
+        Stream<String> streamGenerate = Stream.generate(()->"abc");
+        System.out.println("8. Создание бесконечных стримов с помощью Stream.generate: "+streamGenerate.limit(5).collect(Collectors.toList()));
 
         //9. Создать параллельный стрим из коллекции
 
