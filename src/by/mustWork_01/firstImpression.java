@@ -109,8 +109,25 @@ public class firstImpression {
 
         // пробные варианты
         //Java 9 +
-        Stream.iterate((1), x -> x < 20, x -> x + 1)
-                .forEach(System.out::println);
+        System.out.println( "Stream.iterate: "+ Stream.iterate((1), x -> x < 20, x -> x + 1).collect(Collectors.toList()));
+
+        for (int i = 0; i <85 ; i++) {
+            System.out.print("_");
+        }
+        System.out.println();
+
+        // Stream.Builder мутированный
+        Stream.Builder<Integer> streamMutable = Stream.builder();
+        streamMutable.add(14);
+
+        for (int i = 48; i > 14; i--) {
+            streamMutable.accept(i);
+        }
+        System.out.println("streamMutable: " + streamMutable.build().collect(Collectors.toList()));
+        // не работает - поток закрыт
+//        streamMutable.accept(0);
+//        System.out.println("streamMutable: " + streamMutable.build().collect(Collectors.toList()));
+
 
     }
 }
