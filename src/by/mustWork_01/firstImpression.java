@@ -128,6 +128,9 @@ public class firstImpression {
 //        streamMutable.accept(0);
 //        System.out.println("streamMutable: " + streamMutable.build().collect(Collectors.toList()));
 
+        System.out.println("Stream.concat: "+Stream.concat(Stream.of(10,20,30), Stream.builder().add(12).add(13).add(15).build())
+                .collect(Collectors.toList()));
+
 
     }
 }
