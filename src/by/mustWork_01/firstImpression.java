@@ -9,10 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.cert.CollectionCertStoreParameters;
 import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.stream.*;
 
 import static java.util.stream.Collectors.*;
 
@@ -131,6 +128,10 @@ public class firstImpression {
         //Stream.concat
         System.out.println("Stream.concat: "+Stream.concat(Stream.of(10,20,30), Stream.builder().add(12).add(13).add(15).build())
                 .collect(Collectors.toList()));
+
+        //Stream with range
+            IntStream.range(0,10).forEach(System.out::println);
+            LongStream.rangeClosed(10, 20).forEach(System.out::println);
 
 
     }
