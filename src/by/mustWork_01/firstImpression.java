@@ -106,9 +106,9 @@ public class firstImpression {
 
         // пробные варианты
         //Java 9 +
-        System.out.println( "Stream.iterate: "+ Stream.iterate((1), x -> x < 20, x -> x + 1).collect(Collectors.toList()));
+        System.out.println("Stream.iterate: " + Stream.iterate((1), x -> x < 20, x -> x + 1).collect(Collectors.toList()));
 
-        for (int i = 0; i <85 ; i++) {
+        for (int i = 0; i < 85; i++) {
             System.out.print("_");
         }
         System.out.println();
@@ -126,13 +126,13 @@ public class firstImpression {
 //        System.out.println("streamMutable: " + streamMutable.build().collect(Collectors.toList()));
 
         //Stream.concat
-        System.out.println("Stream.concat: "+Stream.concat(Stream.of(10,20,30), Stream.builder().add(12).add(13).add(15).build())
+        System.out.println("Stream.concat: " + Stream.concat(Stream.of(10, 20, 30), Stream.builder().add(12).add(13).add(15).build())
                 .collect(Collectors.toList()));
 
-        //Stream with range
-            IntStream.range(0,10).forEach(System.out::println);
-            LongStream.rangeClosed(10, 20).forEach(System.out::println);
+        //Stream with range -c данными стримами не работает метод collect
+        IntStream.range(0, 10).forEach(System.out::println);
+        LongStream.rangeClosed(10L, 20L).forEach(System.out::println);
 
-
+        );
     }
 }
