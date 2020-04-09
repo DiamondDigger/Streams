@@ -138,5 +138,8 @@ public class firstImpression {
         Stream<Integer> streamINT =Stream.of(1,2,3,3,3,6,7,8,9,10);
         System.out.println("streamINT.distinct(): "+streamINT.skip(2).distinct().collect(Collectors.toList()));
 
+        //Stream.map -- (s) -> s + 1
+        Stream<String> streamSTR = Stream.of("kitchen","garden", "room", "bathroom");
+        System.out.println("Stream.map: "+ streamSTR.map((s)->s+"_").collect(Collectors.joining()));
     }
 }
