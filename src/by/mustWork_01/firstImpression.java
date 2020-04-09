@@ -146,6 +146,6 @@ public class firstImpression {
         //Stream.seek -- (s) -> s + 1  without changing Stream elements
         System.out.println("streamDBL.peek:");
         Stream<Double> streamDBL = Stream.of(1.0, 2.0, 3.3, 10.5, 4.3);
-        System.out.println("streamDBL: " + streamDBL.peek((e) -> System.out.println("/" + e)).collect(Collectors.toList()));
+        System.out.println("streamDBL: " + streamDBL.peek((e) -> System.out.println("/" + (e+2))).collect(Collectors.toList()));
     }
 }
