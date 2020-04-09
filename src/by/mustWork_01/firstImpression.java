@@ -133,6 +133,10 @@ public class firstImpression {
         IntStream.range(0, 10).forEach(System.out::println);
         LongStream.rangeClosed(10L, 20L).forEach(System.out::println);
 
-        );
+        //distinct and skip
+        //distinct - skip duplicates, skip - skip current number of elements
+        Stream<Integer> streamINT =Stream.of(1,2,3,3,3,6,7,8,9,10);
+        System.out.println("streamINT.distinct(): "+streamINT.skip(2).distinct().collect(Collectors.toList()));
+
     }
 }
