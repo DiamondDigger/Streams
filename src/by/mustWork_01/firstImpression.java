@@ -135,11 +135,17 @@ public class firstImpression {
 
         //distinct and skip
         //distinct - skip duplicates, skip - skip current number of elements
-        Stream<Integer> streamINT =Stream.of(1,2,3,3,3,6,7,8,9,10);
-        System.out.println("streamINT.distinct(): "+streamINT.skip(2).distinct().collect(Collectors.toList()));
+        Stream<Integer> streamINT = Stream.of(1, 2, 3, 3, 3, 6, 7, 8, 9, 10);
+        System.out.println("streamINT.distinct(): " + streamINT.skip(2).distinct().collect(Collectors.toList()));
 
         //Stream.map -- (s) -> s + 1
-        Stream<String> streamSTR = Stream.of("kitchen","garden", "room", "bathroom");
-        System.out.println("Stream.map: "+ streamSTR.map((s)->s+"_").collect(Collectors.joining()));
+        Stream<String> streamSTR = Stream.of("kitchen", "garden", "room", "bathroom");
+        System.out.println("Stream.map: " + streamSTR.map((s) -> s + "_").collect(Collectors.toList()));
+        // joining - make append of current sequences
+
+        //Stream.seek -- (s) -> s + 1  without changing Stream elements
+        System.out.println("streamDBL.peek:");
+        Stream<Double> streamDBL = Stream.of(1.0, 2.0, 3.3, 10.5, 4.3);
+        System.out.println("streamDBL: " + streamDBL.peek((e) -> System.out.println("/" + e)).collect(Collectors.toList()));
     }
 }
