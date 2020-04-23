@@ -147,5 +147,8 @@ public class firstImpression {
         System.out.println("streamDBL.peek:");
         Stream<Double> streamDBL = Stream.of(1.0, 2.0, 3.3, 10.5, 4.3);
         System.out.println("streamDBL: " + streamDBL.peek((e) -> System.out.println("/" + (e+2))).collect(Collectors.toList()));
+
+        Stream<String> streamMap = Stream.of("12L","13L","15L");
+//        System.out.println("StreamLNG: "+ streamMap.mapToLong((s)->Long.parseLong(String.valueOf(streamMap))).collect(Collectors.toMap(, )));
     }
 }
